@@ -1,19 +1,34 @@
-var mongo = require('mongodb');
+var mongo = require('mongodb').MongoClient;
+var assert = require("assert");
 
-var connMongoDB = function(){
+const dbName = "got";
+const url = "mongodb://mavmint:27017";
+
+
+var connMongoDB = function(data){
     console.log('Entrou na conexão com o Mongo');
 
     //criando a conexão com o DB
-    var db = new mongo.DB(
-        'got', //nomedo banco de dados
-        new mongo.Server(
-            'localhost', //str de conexão com o banco
-            27017, //porta
-            {}
-        ),
-        {}
-    );
-    return db;
+    mongo.connect(
+        url, function(err, client){
+            assert.equal(null,err);
+            console.log('Conectado com sucesso no servidor!');
+            const db = client.db(dbName);
+            query(db,data);
+            client.close();
+        }
+    )
+}
+
+function query(db,data) {
+    var collection = db.collection(data.collection);
+    switch (dados.operacao) {
+        case "inserir":
+            collection.insertOne(dados.usuario, dados.callback);
+            break; 
+        default:
+            break;
+    }
 }
 
 module.exports = function(){
