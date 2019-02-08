@@ -27,6 +27,6 @@ module.exports.cadastrar = function (application, req, res) {
     console.log(UsuariosDAO);
     UsuariosDAO.inserirUsuario(dadosForm); //aqui está passando os dados do formulário p/ classe
 
-    res.send('Lets cadastro!')
+    res.send('Lets cadastro!');
 
 }
