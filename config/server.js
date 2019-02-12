@@ -10,6 +10,11 @@ var bodyParser = require('body-parser');
 /* importar o módulo do express-validator */
 var expressValidator = require('express-validator');
 
+/* importar módulo do DOTENV para declaração de variáveis globais */
+const dotenv = require('dotenv');
+//necessário para inicializar a dotenv
+dotenv.config();
+
 /* iniciar o objeto do express */
 var app = express();
 

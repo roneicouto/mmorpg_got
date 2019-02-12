@@ -1,20 +1,31 @@
 {
   "name": "mmorpg_got",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "mmorpg_got",
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app"
   },
   "author": "Ronei Couto",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.3",
     "consign": "^0.1.2",
+    "dotenv": "^6.2.0",
     "ejs": "^2.5.2",
     "express": "^4.16.4",
     "express-session": "^1.15.6",
     "express-validator": "^5.3.1",
     "mongodb": "^3.1.13"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/roneicouto/mmorpg_got.git"
+  },
+  "bugs": {
+    "url": "https://github.com/roneicouto/mmorpg_got/issues"
+  },
+  "homepage": "https://github.com/roneicouto/mmorpg_got#readme"
 }
