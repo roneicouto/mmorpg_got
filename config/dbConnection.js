@@ -2,7 +2,7 @@ var mongo = require('mongodb').MongoClient;
 var assert = require("assert");
 
 const dbName = "got";
-const url = "mongodb://mavmint:27017";
+const url = "mongodb://127.0.0.1:27017";
 
 
 var connMongoDB = function(data){
