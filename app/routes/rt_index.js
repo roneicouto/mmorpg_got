@@ -6,4 +6,8 @@ module.exports = function(application){
 	application.post('/autenticar', function(req, res){
 		application.app.controllers.ct_index.autenticar(application, req, res);
 	});
+
+	application.get('/listarUsuarios', function(req, res){
+		application.app.controllers.ct_index.listarUsuarios(application, req, res);
+	});
 }

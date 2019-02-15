@@ -5,7 +5,7 @@ function UsuariosDAO(connection) {
 }
 
 UsuariosDAO.prototype.inserirUsuario = function(usuario,res){
-    console.log(usuario);
+    console.log("Cadastrando o usuario: ", usuario);
     var dados = {
         operacao : "inserir",
         usuario : usuario,
@@ -14,6 +14,22 @@ UsuariosDAO.prototype.inserirUsuario = function(usuario,res){
             res.send("Deu certo, Ronei")
         }
     }
+    console.log('pegou usuario certinho e saiu');
+    this._connection(dados);
+};
+
+UsuariosDAO.prototype.listarUsuarios = function(req, res){
+    console.log("entrou no metodo de listagem!");
+
+    var dados = {
+        operacao : "listar",
+        collection : "usuarios",
+        callback : function(err, res){
+            res.console.log('listou?');
+        }
+
+    }
+    console.log("entrou no model, funcao de listagem");
     this._connection(dados);
 };
 

@@ -9,6 +9,8 @@ var bodyParser = require('body-parser');
 
 /* importar o módulo do express-validator */
 var expressValidator = require('express-validator');
+/* importar o módulo do express-session */
+var expressSession = require('express-session');
 
 /* importar módulo do DOTENV para declaração de variáveis globais */
 const dotenv = require('dotenv');
@@ -30,6 +32,12 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 /* configurar o middleware express-validator */
 app.use(expressValidator());
+/* configurar o middleware express-session */
+app.use(expressSession({
+	secret: 'aisjidajasijd',
+	resave: false,
+	saveUninitialized: false
+}));
 
 /* efetua o autoload das rotas, dos models e dos controllers para o objeto app */
 consign()

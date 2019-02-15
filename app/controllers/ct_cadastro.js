@@ -30,3 +30,14 @@ module.exports.cadastrar = function (application, req, res) {
     res.send('Lets cadastro!');
 
 }
+
+module.exports.listarUsuarios = function (application, req, res){
+    var dadosForm = req.body;
+    //conecta com o banco
+    console.log("entrou no controller de listagem!")
+    var connection = application.config.dbConnection;
+    var UsuariosDAO = new application.app.models.UsuariosDAO(connection);
+    console.log(UsuariosDAO);
+    UsuariosDAO.listarUsuarios(dadosForm);
+    res.send('Lista de usuarios nos console!');
+}
