@@ -33,6 +33,20 @@ UsuariosDAO.prototype.listarUsuarios = function(req, res){
     this._connection(dados);
 };
 
+UsuariosDAO.prototype.autenticar = function (usuario, res) {
+    console.log("entrou no prototype de autenticar!");
+    var dados = {
+        operacao : "autenticar",
+        usuario : usuario.usuario,
+        senha : usuario.senha,
+        collection: "usuarios",
+        callback : function(err, res){
+            res.console.log('autenticou?');
+        }
+    }
+    this._connection(dados);
+}
+
 module.exports = function() {
     return UsuariosDAO;
 }

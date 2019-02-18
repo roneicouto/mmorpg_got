@@ -15,5 +15,9 @@ module.exports.autenticar = function (application, req, res) {
         res.render("vs_index",{validacao : erros, dadosForm : dadosForm});
         return;
     }
-    res.send('entrou e saiu da validação');
+
+    var connection = application.config.dbConnection;
+
+    var UsuariosDao = new application.app.models.UsuariosDAO(connection);
+    UsuariosDao.autenticar(dadosForm);
 }

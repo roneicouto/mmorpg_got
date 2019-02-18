@@ -38,6 +38,27 @@ function query(db,dados) {
                 console.log(collection); 
             }));
             break;
+        case "autenticar":
+            var collection = {
+                usuario : dados.usuario,
+                senha : dados.senha
+            }
+            console.log('entrou no CASE autenticar! com usuario', dados.usuario,' e senha ',dados.senha);
+            //pode ser assim: db.find({usuario :{$eq:dados.usuario}, senha: {$eq:dados.senha}})
+            db.find({usuario: dados.usuario},function(err, result){
+                    console.log(result);
+                    function podeautenticar() {
+                        if (result[0] != undefined){
+                            var autentica = 'true';
+                            return autentica;
+                        }
+
+                    }
+                    
+            });
+          
+            console.log(podeautenticar());
+            break;
         default:
             console.log('entrou aqui mas nao fez nada!');
             break;
