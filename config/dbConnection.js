@@ -49,10 +49,10 @@ function query(db,dados) {
                     console.log(result[0]);
                         if ((result[0] != undefined) && (result[0] != [])){
                             var autentica1 = true;
+                            //req.session.autorizado = true;
                         } else {
-                            var autentica1 = false;
+                            var autentica1 = false;       
                         }
-                    console.log(autentica1);
             });
             break;
         default:
