@@ -45,26 +45,15 @@ function query(db,dados) {
             }
             console.log('entrou no CASE autenticar! com usuario', dados.usuario,' e senha ',dados.senha);
             //pode ser assim: db.find({usuario :{$eq:dados.usuario}, senha: {$eq:dados.senha}})
-            db.find({usuario: dados.usuario},function(err, result){
-                    console.log(result);
-                        if (result != undefined){
-                            var autentica1 = 'true';
-                            db.find({senha : dados.senha}, function (err, result2) {
-                                console.log(result2);
-                                if (result2 != undefined){
-                                    var autentica2 = 'true';
-                                } else {
-                                    var autentica2 = 'nadaS';
-                                }
-                                
-                            })
+            db.find({usuario: dados.usuario, senha : dados.senha},function(err, result){
+                    console.log(result[0]);
+                        if ((result[0] != undefined) && (result[0] != [])){
+                            var autentica1 = true;
                         } else {
-                            var autentica1, autentica2 = 'nada'
+                            var autentica1 = false;
                         }
-                    console.log(autentica1, autentica2);
+                    console.log(autentica1);
             });
-          
-            //console.log(autentica);
             break;
         default:
             console.log('entrou aqui mas nao fez nada!');
