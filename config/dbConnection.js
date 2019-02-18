@@ -4,6 +4,8 @@ var dataStore = require('nedb')
         autoload : true
     });
 
+var crytpo = require('crypto');
+
 var connection = function(dados){
     console.log("Conectou com o NEDB");
     query(db, dados);
@@ -23,6 +25,10 @@ function query(db,dados) {
                 senha : dados.usuario.senha,
                 casa : dados.usuario.casa
             };
+            //criptografando a SENHA
+            var senhaEncrypted = crytpo.createHash("md5").update(dados.usuario.senha).digest("hex");
+            collection.senha = senhaEncrypted;
+
             db.insert(collection, function(err, newDoc){});
             console.log("gravou usuario: ",dados.usuario.usuario," com senha: ",dados.usuario.senha);
             break;
@@ -43,9 +49,12 @@ function query(db,dados) {
                 usuario : dados.usuario,
                 senha : dados.senha
             }
-            console.log('entrou no CASE autenticar! com usuario', dados.usuario,' e senha ',dados.senha);
+            //criptografando a SENHA
+            var senhaEncrypted = crytpo.createHash("md5").update(collection.senha).digest("hex");
+            collection.senha = senhaEncrypted;
+            console.log('entrou no CASE autenticar! com usuario', collection.usuario,' e senha ',collection.senha);
             //pode ser assim: db.find({usuario :{$eq:dados.usuario}, senha: {$eq:dados.senha}})
-            db.find({usuario: dados.usuario, senha : dados.senha},function(err, result){
+            db.find({usuario: collection.usuario, senha : collection.senha},function(err, result){
                     console.log(result[0]);
                         if ((result[0] != undefined) && (result[0] != [])){
                             var autentica1 = true;
