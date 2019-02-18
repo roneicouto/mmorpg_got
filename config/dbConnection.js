@@ -47,17 +47,24 @@ function query(db,dados) {
             //pode ser assim: db.find({usuario :{$eq:dados.usuario}, senha: {$eq:dados.senha}})
             db.find({usuario: dados.usuario},function(err, result){
                     console.log(result);
-                    function podeautenticar() {
-                        if (result[0] != undefined){
-                            var autentica = 'true';
-                            return autentica;
+                        if (result != undefined){
+                            var autentica1 = 'true';
+                            db.find({senha : dados.senha}, function (err, result2) {
+                                console.log(result2);
+                                if (result2 != undefined){
+                                    var autentica2 = 'true';
+                                } else {
+                                    var autentica2 = 'nadaS';
+                                }
+                                
+                            })
+                        } else {
+                            var autentica1, autentica2 = 'nada'
                         }
-
-                    }
-                    
+                    console.log(autentica1, autentica2);
             });
           
-            console.log(podeautenticar());
+            //console.log(autentica);
             break;
         default:
             console.log('entrou aqui mas nao fez nada!');
